@@ -1,16 +1,22 @@
 return {
-  {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "rcasia/neotest-java",
-      "nvim-neotest/nvim-nio",
-    },
-    ft = { "java" },
-    opts = {
-      adapters = {
-        ["neotest-java"] = {
-        },
-      },
-    },
+  "nvim-neotest/neotest",
+  dependencies = {
+    "nvim-neotest/nvim-nio",
+    "rcasia/neotest-java",
+    -- "nvim-neotest/neotest-python",
   },
+  ft = {
+    "java",
+    -- "python",
+  },
+  config = function()
+    require("neotest").setup({
+      adapters = {
+        require("neotest-java")({
+          -- Optional configuration here
+        }),
+        -- require("neotest-python"),
+      },
+    })
+  end,
 }
